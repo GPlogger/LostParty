@@ -2,7 +2,9 @@ import os
 import itertools
 import statistics
 import json
+import shutil
 
+from API_Getcharlist import get_API
 
 def get_position(job):
     support_jobs = ["바드", "도화가", "홀리나이트"]
@@ -70,6 +72,7 @@ def form_party(members, raid_party_name, party_size=4):
 
 
 def main():
+    get_API()
     raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
 
     # 멤버 파일 읽어들이기
@@ -132,6 +135,6 @@ def main():
             for char in no_combination:
                 print(char)
 
-
+    shutil.rmtree(member_dir_path)
 if __name__ == "__main__":
     main()
