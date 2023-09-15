@@ -1,0 +1,130 @@
+[
+    {
+        "ServerName": "카마인",
+        "CharacterName": "순보라@131159384",
+        "CharacterLevel": 1,
+        "CharacterClassName": "무도가(여)",
+        "ItemAvgLevel": "0.00",
+        "ItemMaxLevel": "0.00"
+    },
+    {
+        "ServerName": "카마인",
+        "CharacterName": "해루나@106177660",
+        "CharacterLevel": 1,
+        "CharacterClassName": "마법사",
+        "ItemAvgLevel": "0.00",
+        "ItemMaxLevel": "0.00"
+    },
+    {
+        "ServerName": "카마인",
+        "CharacterName": "난지수",
+        "CharacterLevel": 32,
+        "CharacterClassName": "배틀마스터",
+        "ItemAvgLevel": "159.91",
+        "ItemMaxLevel": "0.00"
+    },
+    {
+        "ServerName": "아브렐슈드",
+        "CharacterName": "셀린칸나",
+        "CharacterLevel": 51,
+        "CharacterClassName": "바드",
+        "ItemAvgLevel": "1,341.67",
+        "ItemMaxLevel": "1,341.67"
+    },
+    {
+        "ServerName": "아브렐슈드",
+        "CharacterName": "타마야히메",
+        "CharacterLevel": 15,
+        "CharacterClassName": "배틀마스터",
+        "ItemAvgLevel": "76.67",
+        "ItemMaxLevel": "76.67"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네아리스",
+        "CharacterLevel": 60,
+        "CharacterClassName": "소울이터",
+        "ItemAvgLevel": "1,504.17",
+        "ItemMaxLevel": "1,504.17"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네아리아",
+        "CharacterLevel": 15,
+        "CharacterClassName": "건슬링어",
+        "ItemAvgLevel": "75.83",
+        "ItemMaxLevel": "75.83"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네레티샤",
+        "CharacterLevel": 60,
+        "CharacterClassName": "기상술사",
+        "ItemAvgLevel": "1,583.33",
+        "ItemMaxLevel": "1,583.33"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네헤스터",
+        "CharacterLevel": 60,
+        "CharacterClassName": "소서리스",
+        "ItemAvgLevel": "1,490.00",
+        "ItemMaxLevel": "1,490.00"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네이시엘",
+        "CharacterLevel": 60,
+        "CharacterClassName": "데모닉",
+        "ItemAvgLevel": "1,546.67",
+        "ItemMaxLevel": "1,546.67"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네시레이",
+        "CharacterLevel": 60,
+        "CharacterClassName": "도화가",
+        "ItemAvgLevel": "1,580.00",
+        "ItemMaxLevel": "1,580.00"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네바르트",
+        "CharacterLevel": 60,
+        "CharacterClassName": "워로드",
+        "ItemAvgLevel": "1,508.33",
+        "ItemMaxLevel": "1,508.33"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네비센테",
+        "CharacterLevel": 60,
+        "CharacterClassName": "스카우터",
+        "ItemAvgLevel": "1,563.33",
+        "ItemMaxLevel": "1,563.33"
+    },
+    {
+        "ServerName": "카단",
+        "CharacterName": "르네필리파",
+        "CharacterLevel": 60,
+        "CharacterClassName": "바드",
+        "ItemAvgLevel": "1,596.67",
+        "ItemMaxLevel": "1,596.67"
+    },
+    {
+        "ServerName": "니나브",
+        "CharacterName": "르네하피르",
+        "CharacterLevel": 1,
+        "CharacterClassName": "헌터(여)",
+        "ItemAvgLevel": "0.00",
+        "ItemMaxLevel": "0.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "르네디아네",
+        "CharacterLevel": 1,
+        "CharacterClassName": "암살자",
+        "ItemAvgLevel": "0.00",
+        "ItemMaxLevel": "0.00"
+    }
+]

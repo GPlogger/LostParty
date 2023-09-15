@@ -1,0 +1,66 @@
+[
+    {
+        "ServerName": "카마인",
+        "CharacterName": "영한키",
+        "CharacterLevel": 50,
+        "CharacterClassName": "아르카나",
+        "ItemAvgLevel": "532.67",
+        "ItemMaxLevel": "532.67"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "쏘기연",
+        "CharacterLevel": 60,
+        "CharacterClassName": "소울이터",
+        "ItemAvgLevel": "1,553.33",
+        "ItemMaxLevel": "1,553.33"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "도아가는아무것도못해요",
+        "CharacterLevel": 60,
+        "CharacterClassName": "도화가",
+        "ItemAvgLevel": "1,540.00",
+        "ItemMaxLevel": "1,540.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "이게그렇게사기라더라",
+        "CharacterLevel": 59,
+        "CharacterClassName": "블레이드",
+        "ItemAvgLevel": "1,415.00",
+        "ItemMaxLevel": "1,415.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "데충데충",
+        "CharacterLevel": 59,
+        "CharacterClassName": "데모닉",
+        "ItemAvgLevel": "1,370.00",
+        "ItemMaxLevel": "1,370.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "104520",
+        "CharacterLevel": 60,
+        "CharacterClassName": "스카우터",
+        "ItemAvgLevel": "1,540.00",
+        "ItemMaxLevel": "1,540.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "샤인펀치맛",
+        "CharacterLevel": 60,
+        "CharacterClassName": "창술사",
+        "ItemAvgLevel": "1,515.00",
+        "ItemMaxLevel": "1,515.00"
+    },
+    {
+        "ServerName": "카제로스",
+        "CharacterName": "7CERT",
+        "CharacterLevel": 60,
+        "CharacterClassName": "리퍼",
+        "ItemAvgLevel": "1,592.50",
+        "ItemMaxLevel": "1,592.50"
+    }
+]
