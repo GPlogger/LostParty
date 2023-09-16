@@ -5,10 +5,9 @@ import json
 import shutil
 
 from API_Getcharlist import get_API
-
-def get_position(job):
-    support_jobs = ["바드", "도화가", "홀리나이트"]
-    return "서폿" if job in support_jobs else "딜러"
+from raid import Raid
+from character import Character
+from party import Party
 
 
 def get_synergy(job):
@@ -26,57 +25,80 @@ def get_synergy(job):
     return char_synergies
 
 
-def form_party(members, raid_party_name, party_size=4):
-    if raid_party_name == "쿠크세이튼":
-        members = [char for char in members if char[3] >= 1475 and char[3] < 1580]
-
+def form_party(characters, raid_party_name, party_size=4):
+    sup_characters = []
+    unused_characters = {}
     possible_parties = []
-    used_characters = set()
 
-    while members:
+    # 레이드 조건 불러오기
+    raid = Raid.load(raid_party_name)
+
+    # 서폿 캐릭터 분리
+    # 레벨 제한 확인
+    remained_characters = []
+    unused_characters["레벨제한"] = []
+    for character in characters:
+        if character.is_supporter():
+            sup_characters.append(character)
+        elif raid.check_limit_level(character.item_level):
+            remained_characters.append(character)
+        else:
+            unused_characters["레벨제한"].append(character)
+
+    # 추후 서폿과 분리해서 조합할것
+    # 현재는 일단 합쳐놓기
+    remained_characters += sup_characters
+
+    # 가능한 파티 조합 찾기
+    while remained_characters:
         valid_parties = []
-        for party in itertools.combinations(members, party_size):
-            support_count = sum(1 for char in party if get_position(char[2]) == "서폿")
+
+        # 모든 조합 고려
+        # 문제점: 최대한 많은 캐릭터를 사용해서 조합하지 않음
+        for party_characters in itertools.combinations(remained_characters, party_size):
+            party = Party(party_characters)
+
+            # 서폿이 하나만 있어야함
+            # -> 조합 고려할 때 서폿 제외하고 party_size - 1만큼만 고려해서 복잡도 줄이기
+            support_count = sum(1 for char in party.characters if char.is_supporter())
             if support_count != 1:
                 continue
 
+            # 중복 제거 위한 코드같음
+            # 조합 고려할 때 서로 다른 유저의 캐릭으로 조합하기
             if (
-                len(set(char[0] for char in party)) != len(party)
-                or len(set(char[1] for char in party)) != len(party)
-                or len(set(char[2] for char in party)) != len(party)
+                len(set(char.user_name for char in party.characters)) != party.get_num_characters()
+                or len(set(char.char_name for char in party.characters)) != party.get_num_characters()
+                or len(set(char.char_class for char in party.characters)) != party.get_num_characters()
             ):
                 continue
 
-            party_synergies = list(set(itertools.chain(*[get_synergy(char[2]) for char in party])))
+            valid_parties.append(party)
 
-            non_support_levels = [char[3] for char in party if get_position(char[2]) != "서폿"]
-            average_level_non_support = sum(non_support_levels) / len(non_support_levels)
-
-            total_average_level = sum(char[3] for char in party) / len(party)
-            valid_parties.append((total_average_level, average_level_non_support, party_synergies, party))
-
+        # 더 이상 가능한 파티가 없으면 while 종료
         if not valid_parties:
             break
 
-        avg_levels = [party[0] for party in valid_parties]
+        # 파티들 평균 레벨
+        avg_levels = [party.avg_level for party in valid_parties]
+        # 파티들 평균 레벨의 평균
         target_level = statistics.mean(avg_levels)
-        valid_parties.sort(key=lambda x: abs(x[0] - target_level))
+        # 파티를 평균 레벨 순으로 정렬(오름차순)
+        valid_parties.sort(key=lambda x: abs(x.avg_level - target_level))
+        # 가장 레벨이낮은 파티를 선택해서 가능한 파티에 추가
         chosen_party = valid_parties[0]
         possible_parties.append(chosen_party)
 
-        for char in chosen_party[3]:
-            members.remove(list(char))
-            used_characters.add(tuple(char))
+        # 선택한 파티의 멤버를 더 이상 조합 고려하지 않음
+        for char in chosen_party.characters:
+            remained_characters.remove(char)
 
-    return possible_parties
+    unused_characters["조합실패"] = remained_characters
+
+    return possible_parties, unused_characters
 
 
-def main():
-    get_API()
-    raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
-
-    # 멤버 파일 읽어들이기
-    member_dir_path = "./members"
+def get_character_data(member_dir_path: str):
     member_file_list = os.listdir(member_dir_path)
 
     member_data_dict = {}
@@ -89,52 +111,51 @@ def main():
 
     for name, member_data in member_data_dict.items():
         for character_data in member_data:
-            character_name = character_data["CharacterName"]
-            character_class_name = character_data["CharacterClassName"]
-            item_max_level = int(float(character_data["ItemMaxLevel"].replace(",", "")))
-            characters.append([name, character_name, character_class_name, item_max_level])
+            character_data["Name"] = name
+            character = Character.load(character_data)
+            characters.append(character)
 
-    parties = form_party(characters, raid_party_name)
+    return characters
 
-    for idx, (total_avg, non_support_avg, synergies, party) in enumerate(parties, 1):
-        print(f"\n{raid_party_name} 파티 {idx} (파티 시너지 : {', '.join(synergies)}):")
-        for char in party:
+
+def main():
+    if __debug__:
+        raid_party_name = "쿠크세이튼"
+    else:
+        get_API()
+        raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
+
+    # 캐릭터 정보 불러오기
+    member_dir_path = "./members"
+    characters = get_character_data(member_dir_path)
+
+    parties, unused_characters = form_party(characters, raid_party_name)
+
+    for idx, party in enumerate(parties, 1):
+        print(f"\n{raid_party_name} 파티 {idx} (파티 시너지 : {', '.join(party.synergies)}):")
+        for char in party.characters:
             print(char)
-        print(f"전체 평균 레벨: {total_avg:.2f}")
-        print(f"서폿 제외 평균 레벨: {non_support_avg:.2f}")
-
-    unused_characters = [
-        char
-        for char in characters
-        if tuple(char) not in set(tuple(item) for sublist in parties for item in sublist[3])
-    ]
+        print(f"전체 평균 레벨: {party.avg_level:.2f}")
+        print(f"서폿 제외 평균 레벨: {party.avg_level_without_sup:.2f}")
 
     if unused_characters:
         print("\n사용되지 않은 캐릭터:")
 
-        level_too_high = [
-            char for char in unused_characters if raid_party_name == "쿠크세이튼" and char[3] >= 1580
-        ]
-        level_too_low = [char for char in unused_characters if raid_party_name == "쿠크세이튼" and char[3] < 1475]
-        no_combination = [
-            char for char in unused_characters if char not in level_too_high and char not in level_too_low
-        ]
-
-        if level_too_high:
-            print("\n사유 : 권장 레벨 초과(골드 손해):")
-            for char in level_too_high:
+        if len(unused_characters["레벨제한"]) > 0:
+            print("\n사유 : 권장 레벨 범위 벗어남:")
+            for char in unused_characters["레벨제한"]:
                 print(char)
 
-        if level_too_low:
-            print("\n사유 : 권장 레벨 미만:")
-            for char in level_too_low:
-                print(char)
+        no_combination = [char for char in unused_characters["조합실패"]]
 
         if no_combination:
             print("\n사유 : 적절한 조합을 찾지 못함:")
             for char in no_combination:
                 print(char)
 
-    shutil.rmtree(member_dir_path)
+    if not __debug__:
+        shutil.rmtree(member_dir_path)
+
+
 if __name__ == "__main__":
     main()
