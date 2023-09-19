@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python
 
 /members/
-# /token.txt
+token.txt
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -196,3 +196,4 @@ pyrightconfig.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python
+token.txt

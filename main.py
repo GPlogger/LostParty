@@ -122,8 +122,7 @@ def main():
     # else:
     #     get_API()
     #     raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
-    if not __debug__:
-        get_user_data()
+    get_user_data()
     raid = SelectRaid()
 
     # 캐릭터 정보 불러오기

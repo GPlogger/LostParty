@@ -5,17 +5,25 @@ import json
 
 def get_user_data():
     # 디렉터리 경로 생성 (./members/)
+    token_path = "token.txt"
+    if not os.path.exists(token_path):
+        # 토큰 생성
+        token = input("API 토큰을 입력하세요: ")
+        with open("token.txt", "w") as f:
+            f.write(token)
+    else:
+        # 토큰 읽기
+        with open("token.txt", "r") as f:
+            token = f.readline()
+
     directory = "./members/"
     os.makedirs(directory, exist_ok=True)
-
-    # 토큰 읽기
-    with open("token.txt", "r") as f:
-        token = f.readline()
 
     headers = {
         "accept": "application/json",
         "authorization": token,
     }
+    # token이 잘못 입력된 경우에 대한 처리 필요
 
     while True:
         # 사용자로부터 이름과 캐릭터 이름을 입력 받음
