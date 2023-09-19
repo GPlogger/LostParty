@@ -1,0 +1,127 @@
+[
+    {
+        "RaidName": "발탄노말",
+        "Minimum_Level": 1415,
+        "Maximum_Level": 1444
+    },
+    {
+        "RaidName": "발탄하드",
+        "Minimum_Level": 1445,
+        "Maximum_Level": 1489
+    },    
+    {
+        "RaidName": "발탄헬",
+        "Minimum_Level": 1445,
+        "Maximum_Level": 9999
+    },    
+    {
+        "RaidName": "비아키스노말",
+        "Minimum_Level": 1430,
+        "Maximum_Level": 1459
+    },    
+    {
+        "RaidName": "비아키스하드",
+        "Minimum_Level": 1460,
+        "Maximum_Level": 1539
+    },    
+    {
+        "RaidName": "비아키스헬",
+        "Minimum_Level": 1460,
+        "Maximum_Level": 9999
+    },    
+    {
+        "RaidName": "쿠크세이튼노말",
+        "Minimum_Level": 1475,
+        "Maximum_Level": 1579
+    },    
+    {
+        "RaidName": "쿠크세이튼헬",
+        "Minimum_Level": 1475,
+        "Maximum_Level": 9999
+    },    
+    {
+        "RaidName": "아브노12",
+        "Minimum_Level": 1490,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브노13",
+        "Minimum_Level": 1500,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브노14",
+        "Minimum_Level": 1520,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하1노23",
+        "Minimum_Level": 1540,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하12노3",
+        "Minimum_Level": 1540,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하12노34",
+        "Minimum_Level": 1540,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하123노4",
+        "Minimum_Level": 1550,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하12",
+        "Minimum_Level": 1540,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하13",
+        "Minimum_Level": 1550,
+        "Maximum_Level": 1599
+    },    
+    {
+        "RaidName": "아브하14",
+        "Minimum_Level": 1560,
+        "Maximum_Level": 1599
+    },
+    {
+        "RaidName": "아브헬",
+        "Minimum_Level": 1560,
+        "Maximum_Level": 9999
+    },
+    {
+        "RaidName": "카양갤노말",
+        "Minimum_Level": 1540,
+        "Maximum_Level": 1579
+    },
+    {
+        "RaidName": "카양갤하드",
+        "Minimum_Level": 1580,
+        "Maximum_Level": 1599
+    },
+    {
+        "RaidName": "상아탑노말",
+        "Minimum_Level": 1600,
+        "Maximum_Level": 1619
+    },
+    {
+        "RaidName": "상아탑하드",
+        "Minimum_Level": 1620,
+        "Maximum_Level": 9999
+    },
+    {
+        "RaidName": "카멘노말",
+        "Minimum_Level": 1610,
+        "Maximum_Level": 9999
+    },
+    {
+        "RaidName": "카멘하드",
+        "Minimum_Level": 1630,
+        "Maximum_Level": 9999
+    }
+]

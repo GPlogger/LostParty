@@ -1,7 +1,7 @@
 def SelectRaid():
     raids = ["발탄", "비아키스", "쿠크세이튼", "아브렐슈드", "일리아칸", "카양갤", "상아탑", "카멘"]
     difficulties = ["노말", "하드", "헬"]
-    abrelshud_difficulties = ["노12", "노13", "노14", "하1노23", "하12노3", "하12노34", "하123노4", "하12", "하13", "하14"]
+    abrelshud_difficulties = ["노12", "노13", "노14", "하1노23", "하12노3", "하12노34", "하123노4", "하12", "하13", "하14", "헬"]
 
     # 사용자에게 레이드 목록 출력
     print("선택 가능한 레이드 목록:")
@@ -74,5 +74,5 @@ def SelectRaid():
         return "잘못된 레이드 입력입니다."
 
 # 함수 테스트
-# result = SelectRaid()
-# print(result)
+result = SelectRaid()
+print(result)
