@@ -4,11 +4,11 @@ import statistics
 import json
 import shutil
 
-from API_Getcharlist import get_API
+from API_utils import get_user_data
 from raid import Raid
 from character import Character
 from party import Party
-from selectraid import SelectRaid
+from select_raid import SelectRaid
 
 
 def get_synergy(job):
@@ -26,13 +26,10 @@ def get_synergy(job):
     return char_synergies
 
 
-def form_party(characters, raid_party_name, party_size=4):
+def form_party(characters, raid, party_size=4):
     sup_characters = []
     unused_characters = {}
     possible_parties = []
-
-    # 레이드 조건 불러오기
-    raid = Raid.load(raid_party_name)
 
     # 서폿 캐릭터 분리
     # 레벨 제한 확인
@@ -125,18 +122,18 @@ def main():
     # else:
     #     get_API()
     #     raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
-
-    get_API()
-    raid_party_name = SelectRaid()
+    if not __debug__:
+        get_user_data()
+    raid = SelectRaid()
 
     # 캐릭터 정보 불러오기
     member_dir_path = "./members"
     characters = get_character_data(member_dir_path)
 
-    parties, unused_characters = form_party(characters, raid_party_name)
+    parties, unused_characters = form_party(characters, raid)
 
     for idx, party in enumerate(parties, 1):
-        print(f"\n{raid_party_name} 파티 {idx} (파티 시너지 : {', '.join(party.synergies)}):")
+        print(f"\n{raid.name} 파티 {idx} (파티 시너지 : {', '.join(party.synergies)}):")
         for char in party.characters:
             print(char)
         print(f"전체 평균 레벨: {party.avg_level:.2f}")

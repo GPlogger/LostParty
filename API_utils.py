@@ -2,15 +2,20 @@ import os
 import requests
 import json
 
-def get_API():
-    headers = {
-        "accept": "application/json",
-        "authorization": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAzMjEyODgifQ.G2e5bMouPV4Nwnab1lPMnhJ25YNHwAMcDL9rNWEcxoN_Cn4o4QLVrtQg9ssXZoexaKXU4j_i9HDxV8_9sWUlfFysIDd16aGdU9xKetJMI4owzXPNX7A4SUTo-VhgUCUxT4PnNUXXEQyUW5T3Wce_0K1LuqzlSzgzYGAozHQG1Pb4Uf1gPKs6lbp5oxwNp1aquu7vcTBeVnV6MYN5G-efSyrs8J4kUaeScYjIThu3npu4ZUFpJAAOzHgVGySSkujdXNuvpB-aSA_dAqYP_7Cnl5gwzPUHwyx9C5A0gpNdclyZVFHSm-NIT4apXj29MCQBGpmTxMB5vOEUHsH44RrM6g",
-    }
 
+def get_user_data():
     # 디렉터리 경로 생성 (./members/)
     directory = "./members/"
     os.makedirs(directory, exist_ok=True)
+
+    # 토큰 읽기
+    with open("token.txt", "r") as f:
+        token = f.readline()
+
+    headers = {
+        "accept": "application/json",
+        "authorization": token,
+    }
 
     while True:
         # 사용자로부터 이름과 캐릭터 이름을 입력 받음

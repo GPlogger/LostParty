@@ -5,10 +5,11 @@ import yaml
 class Raid:
     raid_condition_dir = "./raid_conditions"
 
-    def __init__(self, minimum_limit_level, maximum_limit_level):
-        self.conditions = []
+    def __init__(self, name, minimum_limit_level, maximum_limit_level):
+        self.name = name
         self.minimum_limit_level = minimum_limit_level
         self.maximum_limit_level = maximum_limit_level
+        self.conditions = []
 
     def check_limit_level(self, level):
         return self.minimum_limit_level <= level <= self.maximum_limit_level
