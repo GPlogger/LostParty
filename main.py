@@ -8,6 +8,7 @@ from API_Getcharlist import get_API
 from raid import Raid
 from character import Character
 from party import Party
+from selectraid import SelectRaid
 
 
 def get_synergy(job):
@@ -119,11 +120,14 @@ def get_character_data(member_dir_path: str):
 
 
 def main():
-    if __debug__:
-        raid_party_name = "쿠크세이튼"
-    else:
-        get_API()
-        raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
+    # if __debug__:
+    #     raid_party_name = "쿠크세이튼"
+    # else:
+    #     get_API()
+    #     raid_party_name = input("어떤 파티를 구성하실 건가요? (예: 발탄, 비아키스, 쿠크세이튼, 아브렐슈드, 일리아칸, 카양갤, 상아탑, 카멘): ")
+
+    get_API()
+    raid_party_name = SelectRaid()
 
     # 캐릭터 정보 불러오기
     member_dir_path = "./members"
